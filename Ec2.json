@@ -1,0 +1,35 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+
+  "Description": "\"AWS CloudFormation Sample Template.",
+  "Resources": {
+    "EC2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "AvailabilityZone": "us-west-1a",
+        "IamInstanceProfile": "arn:aws:iam::708415551694:instance-profile/Kubernates",
+        "ImageId": "ami-07fb6c3b0fee561c2",
+        "InstanceType": "t2.micro",
+        "KeyName": "NewKeyPair",
+        "SecurityGroupIds": "sg-04bdc7094eddcc650",
+        "SecurityGroups": "MyAppServerSG",
+        "SubnetId": "subnet-08a7accf08d7170e0"
+      }
+    }
+  },
+  "Outputs": {
+    "WebsiteURL": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "http://",
+            { "Fn::GetAtt": [ "WebServer", "PublicDnsName" ] },
+            "/wordpress"
+          ]
+        ]
+      },
+      "Description": "WordPress Website"
+    }
+  }
+}

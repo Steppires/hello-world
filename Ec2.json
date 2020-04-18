@@ -7,17 +7,24 @@
       "Type": "AWS::EC2::Instance",
       "Properties": {
         "AvailabilityZone": "us-east-1a",
-        "IamInstanceProfile": "arn:aws:iam::708415551694:instance-profile/Kubernates",
         "ImageId": "ami-07fb6c3b0fee561c2",
         "InstanceType": "t2.micro",
         "KeyName": "NewKeyPair",
-        "SecurityGroupIds": "sg-04bdc7094eddcc650",
-        "SecurityGroups": "MyAppServerSG",
-        "SubnetId": "subnet-08a7accf08d7170e0"
+        "NetworkInterfaces": [
+            {
+                "AssociatePublicIpAddress": true,
+                "DeleteOnTermination": true,
+                "DeviceIndex": "0",
+                "SubnetId": "subnet-08a7accf08d7170e0",
+                "GroupSet": [
+                    "sg-04bdc7094eddcc650"
+                ]
+            }
+        ]
       }
     }
   },
- "Outputs": {
+  "Outputs": {
     "WebsiteURL": {
       "Value": {
         "Fn::Join": [
@@ -33,4 +40,3 @@
     }
   }
 }
-

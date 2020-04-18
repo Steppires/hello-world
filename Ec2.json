@@ -17,14 +17,14 @@
       }
     }
   },
-  "Outputs": {
+ "Outputs": {
     "WebsiteURL": {
       "Value": {
         "Fn::Join": [
           "",
           [
             "http://",
-            { "Fn::GetAtt": [ "WebServer", "PublicDnsName" ] },
+            { "Fn::GetAtt": [ "EC2Instance", "PublicDnsName" ] },
             "/wordpress"
           ]
         ]
@@ -33,3 +33,4 @@
     }
   }
 }
+
